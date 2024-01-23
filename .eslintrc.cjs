@@ -25,5 +25,10 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react", "react-hooks", "jsx-a11y"],
-  rules: {},
+  rules: {
+    "react/react-in-jsx-scope": "off", // import React 구문
+  },
+  settings: {
+    react: { version: "detect" }, // react version을 추적할 수 있게 하기 위해
+  },
 };
