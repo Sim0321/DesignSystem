@@ -11,7 +11,7 @@ const SideBar = () => {
   // react-qeury 추가
   const getComponents = () => {
     const dbRef = ref(db);
-    get(child(dbRef, "/components"))
+    get(child(dbRef, "componentstest"))
       .then((snapshot) => {
         if (snapshot.exists()) {
           setComponentList([...snapshot.val().component]);

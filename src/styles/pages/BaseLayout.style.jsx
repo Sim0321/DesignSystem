@@ -12,6 +12,7 @@ export const ComponentWrapper = styled.div`
   margin-right: 20px;
   background-color: ${theme.color.backGround};
   border-radius: 8px 8px 0 0;
+
   .componentContainer {
     width: 100%;
     height: 100%;

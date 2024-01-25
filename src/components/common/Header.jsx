@@ -48,7 +48,7 @@ const Header = () => {
   const submitData = (e) => {
     e.preventDefault();
 
-    set(ref(db, `components/`), {
+    set(ref(db, `componentstest`), {
       ...dummyDataArray,
     })
       .then(() => {

@@ -5,6 +5,8 @@ export const theme = {
     main: "#EDE7F6",
     mainHover: "#5e35b1",
     mainActive: "#673AB7",
+
+    sub: "#d5cae7",
     black: "#364152",
     lightBlue: "#E3F2FD",
     deepblue: "#2196F3",
@@ -12,6 +14,7 @@ export const theme = {
 
     backGround: "#EEF2F6",
     white: "#FFF",
+    gray: "#e3e8ef",
   },
 
   font: {},
