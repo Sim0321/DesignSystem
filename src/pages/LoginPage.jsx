@@ -1,9 +1,5 @@
 const LoginPage = () => {
-  return (
-    <form>
-      <input type="text" />
-    </form>
-  );
+  return <form></form>;
 };
 
 export default LoginPage;
