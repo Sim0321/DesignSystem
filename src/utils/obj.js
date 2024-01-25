@@ -1,4 +1,4 @@
-export const buttonAttr = {
+const buttonAttr = {
   component_name: "",
   width: "",
   height: "",
@@ -10,12 +10,12 @@ export const buttonAttr = {
   font_size: "",
 };
 
-export const inputAttr = {
+const inputAttr = {
   component_name: "",
   width: "",
   height: "",
   placeholder: "",
-  placeholder_color: "",
+  // placeholder_color: "",
   border_radius: "",
   background: "",
   color: "",
@@ -24,7 +24,7 @@ export const inputAttr = {
   font_size: "",
 };
 
-export const checkBox = {
+const checkBoxAttr = {
   component_name: "",
   checked: false,
   width: "",
@@ -34,3 +34,5 @@ export const checkBox = {
   padding: "",
   border: "",
 };
+
+export { buttonAttr, inputAttr, checkBoxAttr };

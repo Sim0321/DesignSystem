@@ -20,10 +20,10 @@ export const HandleStyleBox = styled.form`
   padding: 15px 20px;
   border-radius: 12px;
   .category-list {
-    /* width: 260px; */
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin-bottom: 20px;
     .category {
       flex: 1; //반응형 할 때 따로 수정
       height: 30px;
