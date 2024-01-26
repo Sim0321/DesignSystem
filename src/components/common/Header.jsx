@@ -5,8 +5,11 @@ import { useRef, useState } from "react";
 import { v4 as uid } from "uuid";
 import { ref, set } from "firebase/database";
 import { db } from "./../../apis/firebase";
+import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [expandStatus, setExpandStatus] = useState("default");
 
   const [dummyDataArray, setDummyDataArray] = useState({
@@ -71,9 +74,16 @@ const Header = () => {
     }
   };
 
+  const clickRegister = () => {
+    navigate("/upload");
+  };
+
   return (
     <S.Header>
-      <div className="logo">Component Picker</div>
+      <div className="logo" onClick={() => navigate("/")}>
+        Component Picker
+      </div>
+      <Button onClick={clickRegister}>등록하러가기</Button>
 
       <div className="right">
         <Search onClick={clickSearchIcon} />

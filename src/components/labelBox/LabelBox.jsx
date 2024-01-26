@@ -10,18 +10,54 @@ const LabelBox = ({ id, name, obj, onChange }) => {
     return filter[0].text;
   };
 
-  // checked일 때 예외처리 필요
+  // name들 예외처리
+  const renderDiffentInput = () => {
+    if (name === "checked") {
+      return (
+        <input
+          type="checkbox"
+          id={id}
+          name={name}
+          checked={obj.checked || false}
+          onChange={onChange}
+        />
+      );
+    }
+    if (name === "component_name") {
+      return (
+        <Input
+          id={id}
+          name={name}
+          placeholder={pickPlaceHolder()}
+          value={obj[name] || ""}
+          onChange={onChange}
+          size="large"
+        />
+      );
+    } else {
+      return (
+        <Input
+          id={id}
+          name={name}
+          placeholder={pickPlaceHolder()}
+          value={obj[name] || ""}
+          onChange={onChange}
+        />
+      );
+    }
+  };
 
   return (
     <S.LabelBox>
       <Label htmlFor={id}>{name}</Label>
-      <Input
+      {/* <Input
         id={id}
         name={name}
         placeholder={pickPlaceHolder()}
         value={obj[name] || ""}
         onChange={onChange}
-      />
+      /> */}
+      {renderDiffentInput()}
     </S.LabelBox>
   );
 };

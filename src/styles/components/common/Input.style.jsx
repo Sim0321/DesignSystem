@@ -6,7 +6,7 @@ export const Input = styled.input`
   height: 30px;
   padding: 0 8px;
   border-radius: 8px;
-  border: 2px solid ${theme.color.mainActive};
+  border: 1px solid ${theme.color.gray};
 
   /* color: ${(p) => (p.color ? p.color : `${theme.color.white}`)}; */
   /* background-color: ${(p) => (p.bg ? p.bg : `${theme.color.deepblue}`)}; */
@@ -14,7 +14,7 @@ export const Input = styled.input`
   ${(p) =>
     p.size === "large" &&
     css`
-      width: 200px;
+      width: 250px;
     `}
   ${(p) =>
     p.size === "medium" &&

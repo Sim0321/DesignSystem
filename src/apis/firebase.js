@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { child, get, getDatabase, ref, set } from "firebase/database";
+
+import { v4 as uid } from "uuid";
 
 const firebaseConfig = {
   apikey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -16,3 +18,68 @@ const app = initializeApp(firebaseConfig);
 
 // firebase의 firestore 인스턴스를 변수에 저장
 export const db = getDatabase(app);
+
+/** 특정한 곳에 생성
+ * param :
+ *
+ */
+export async function addComponent(category, obj) {
+  // console.log("FBcategory ::", category);
+  // console.log("FBobj ::", obj);
+  const id = uid();
+
+  // console.log(obj);
+  // const arr = { ...obj, id };
+  // console.log("arr ::", arr);
+  // const array = [...list];
+  // const data = {
+  //   component_name: "Color Button",
+  //   id,
+  // };
+  // array.push(data);
+  // console.log(array);
+
+  // const data = { ...obj, id };
+  set(ref(db, `components/component/${category}/${id}`), {
+    style: obj,
+    id,
+    type: category,
+  })
+    .then(() => {
+      console.log("버튼에 추가 성공");
+    })
+    .catch((error) => {
+      console.error("버튼에 추가 실패:", error);
+    });
+  console.log("addComponent");
+}
+
+/** category 조회
+ *
+ */
+export async function getCategory() {
+  try {
+    const snapshot = await get(ref(db, "/components"));
+
+    if (snapshot.exists()) {
+      // console.log(snapshot.val());
+      const item = snapshot.val().component;
+      // console.log(item);
+      return item;
+    } else {
+      console.log("No Data");
+      return [];
+    }
+  } catch (error) {
+    console.error("데이터 실패", error);
+    throw error; //
+  }
+}
+
+/** 수정
+ *
+ */
+
+/** 삭제
+ *
+ */

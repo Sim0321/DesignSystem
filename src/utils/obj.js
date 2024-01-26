@@ -1,5 +1,6 @@
 const buttonAttr = {
   component_name: "",
+  desc: "",
   width: "",
   height: "",
   border_radius: "",
@@ -8,20 +9,22 @@ const buttonAttr = {
   padding: "",
   border: "",
   font_size: "",
+  font_weight: "",
 };
 
 const inputAttr = {
   component_name: "",
+  placeholder: "",
+  desc: "",
   width: "",
   height: "",
-  placeholder: "",
-  // placeholder_color: "",
   border_radius: "",
   background: "",
   color: "",
   padding: "",
   border: "",
   font_size: "",
+  font_weight: "",
 };
 
 const checkBoxAttr = {

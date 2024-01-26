@@ -14,15 +14,15 @@ function useReturnComponent(title) {
       case "CheckBox":
         setElement(<input type="checkbox" />);
         break;
-      case "Radio":
-        setElement(<input type="radio" />);
-        break;
-      case "Card":
-        setElement(<div>card</div>);
-        break;
-      case "BoxShadow":
-        setElement(<div>boxShadow</div>);
-        break;
+      // case "Radio":
+      //   setElement(<input type="radio" />);
+      //   break;
+      // case "Card":
+      //   setElement(<div>card</div>);
+      //   break;
+      // case "BoxShadow":
+      //   setElement(<div>boxShadow</div>);
+      //   break;
       default:
         setElement(null);
         break;

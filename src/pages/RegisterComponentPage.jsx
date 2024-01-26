@@ -1,36 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import * as S from "../styles/pages/RegisterComponentPage.style";
-import { titleArray } from "../utils/array";
+import * as Utils from "../utils/array";
 import LabelBox from "../components/labelBox/LabelBox";
-import useReturnComponent from "../hooks/useReturnComponent";
 import useReturnObj from "../hooks/useReturnObj";
 import Button from "../components/common/Button";
+import useComponent from "../hooks/useComponent";
 
 const RegisterComponentPage = () => {
+  // 어떤 컴포넌트로 생성할 것인지 카테고리 상태관리
   const [selectCategory, setSelectCategory] = useState("");
 
+  // 커스텀 훅에서 가져온 카테고리별 obj랑 obj의 키로 만든 배열
+  const { attr, attrKeys } = useReturnObj(selectCategory);
+
+  // 백한테 보낼 데이터 형식
   const [attrObj, setAttrObj] = useState({});
 
-  console.log("attrObj::", attrObj);
+  // console.log("attrObj ::", attrObj);
 
-  const { attr, attrKeys } = useReturnObj(selectCategory);
+  const { addComponentQuery } = useComponent();
 
   const clickSelectCategory = (e) => {
     setSelectCategory(e.target.innerText);
   };
 
-  const element = useReturnComponent(selectCategory);
-
-  // console.log("obj ::", attr);
-  // console.log("obj배열로 ::", attrKeys);
-
-  // customhook에서 가져온 객체 state로 관리하기 위해
-  useEffect(() => {
-    setAttrObj({ ...attr });
-  }, [attr]);
-
+  // category 렌더 함수
   const renderCategory = () => {
-    return titleArray.map((el, index) => (
+    return Utils.titleArray.map((el, index) => (
       <div className="category" key={index} onClick={clickSelectCategory}>
         {el}
       </div>
@@ -39,26 +35,91 @@ const RegisterComponentPage = () => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
+    if (name === "checked") {
+      setAttrObj({ ...attrObj, [name]: e.target.checked });
+    } else {
+      setAttrObj({ ...attrObj, [name]: value });
+    }
+  };
 
-    setAttrObj({ ...attrObj, [name]: value });
+  // category에 따른 Element 반환 함수
+  const returnElement = useCallback(() => {
+    if (selectCategory === "Button") {
+      return (
+        <S.TestButton obj={attrObj}>{attrObj.desc || "Button"}</S.TestButton>
+      );
+    } else if (selectCategory === "Input") {
+      return (
+        <S.TestInput
+          readOnly
+          type="text"
+          obj={attrObj}
+          placeholder={attrObj.placeholder || ""}
+          defaultValue={attrObj.desc}
+        />
+      );
+    } else if (selectCategory === "CheckBox") {
+      return (
+        <S.TestCheckbox
+          readOnly
+          type="checkbox"
+          obj={attrObj}
+          checked={attrObj.checked || false}
+        />
+      );
+    }
+    // else if (selectCategory === "Card") {
+    //   return <div>card</div>;
+    // }  else if (selectCategory === "BoxShadow") {
+    //   return <div>box shadow</div>;
+    // } else if (selectCategory === "Radio") {
+    //   return <input type="radio" />;
+    // }
+    else {
+      return null;
+    }
+  }, [selectCategory, attrObj]);
+
+  useEffect(() => {
+    returnElement();
+  }, [returnElement]);
+
+  // customhook에서 가져온 객체 state로 관리하기 위해
+  useEffect(() => {
+    setAttrObj({ ...attr });
+  }, [attr]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log("눌림");
+    // console.log("attrObj ::", attrObj);
+    addComponentQuery.mutate({ selectCategory, attrObj });
   };
 
   return (
     <S.RegisterWrapper>
-      <S.HandleComponentBox>{selectCategory && element}</S.HandleComponentBox>
-      <S.HandleStyleBox>
+      <S.HandleComponentBox>
+        {selectCategory && returnElement()}
+      </S.HandleComponentBox>
+      <S.HandleStyleBox
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <div className="category-list">{renderCategory()}</div>
-        {attrKeys.length !== 0 &&
-          attrKeys.map((el, i) => (
-            <LabelBox
-              key={i}
-              id={el}
-              obj={attrObj}
-              name={el}
-              onChange={onChange}
-            />
-          ))}
-        <Button>등록</Button>
+        <div className="form">
+          {attrKeys.length !== 0 &&
+            attrKeys.map((el, i) => (
+              <LabelBox
+                key={i}
+                id={el}
+                obj={attrObj}
+                name={el}
+                onChange={onChange}
+              />
+            ))}
+        </div>
+        {attrKeys.length !== 0 && <Button onClick={handleSubmit}>등록</Button>}
       </S.HandleStyleBox>
     </S.RegisterWrapper>
   );
