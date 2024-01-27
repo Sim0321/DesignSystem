@@ -1,35 +1,43 @@
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
+import * as S from "../styles/pages/RegisterComponentPage.style";
 
-function useReturnComponent(title) {
-  const [element, setElement] = useState(null);
-
-  useEffect(() => {
-    switch (title) {
-      case "Button":
-        setElement(<button>Button</button>);
-        break;
-      case "Input":
-        setElement(<input type="text" />);
-        break;
-      case "CheckBox":
-        setElement(<input type="checkbox" />);
-        break;
-      // case "Radio":
-      //   setElement(<input type="radio" />);
-      //   break;
-      // case "Card":
-      //   setElement(<div>card</div>);
-      //   break;
-      // case "BoxShadow":
-      //   setElement(<div>boxShadow</div>);
-      //   break;
-      default:
-        setElement(null);
-        break;
+const useReturnComponent = () => {
+  const returnElement = useCallback((selectCategory, attrObj) => {
+    console.log("selectCategory ::", selectCategory);
+    console.log("attrObj ::", attrObj);
+    if (selectCategory === "Button") {
+      return (
+        <S.TestButton obj={attrObj}>{attrObj.desc || "Button"}</S.TestButton>
+      );
+    } else if (selectCategory === "Input") {
+      return (
+        <S.TestInput
+          readOnly
+          type="text"
+          obj={attrObj}
+          placeholder={attrObj.placeholder || ""}
+          defaultValue={attrObj.desc}
+        />
+      );
+    } else if (selectCategory === "CheckBox") {
+      return (
+        <S.TestCheckbox
+          readOnly
+          type="checkbox"
+          obj={attrObj}
+          checked={attrObj.checked || false}
+        />
+      );
+    } else {
+      return null;
     }
-  }, [title]);
+  }, []);
 
-  return element;
-}
+  //   useEffect(() => {
+  //   returnElement();
+  // }, [returnElement]);
+
+  return { returnElement };
+};
 
 export default useReturnComponent;

@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "../styles/pages/RegisterComponentPage.style";
 import * as Utils from "../utils/array";
 import LabelBox from "../components/labelBox/LabelBox";
 import useReturnObj from "../hooks/useReturnObj";
 import Button from "../components/common/Button";
 import useComponent from "../hooks/useComponent";
+import useReturnComponent from "../hooks/useReturnComponent";
 
 const RegisterComponentPage = () => {
   // 어떤 컴포넌트로 생성할 것인지 카테고리 상태관리
@@ -19,6 +20,11 @@ const RegisterComponentPage = () => {
   // console.log("attrObj ::", attrObj);
 
   const { addComponentQuery } = useComponent();
+
+  // const element = useReturnComponent(selectCategory, attrObj);
+  const { returnElement } = useReturnComponent();
+
+  // console.log("element ::", element);
 
   const clickSelectCategory = (e) => {
     setSelectCategory(e.target.innerText);
@@ -43,46 +49,46 @@ const RegisterComponentPage = () => {
   };
 
   // category에 따른 Element 반환 함수
-  const returnElement = useCallback(() => {
-    if (selectCategory === "Button") {
-      return (
-        <S.TestButton obj={attrObj}>{attrObj.desc || "Button"}</S.TestButton>
-      );
-    } else if (selectCategory === "Input") {
-      return (
-        <S.TestInput
-          readOnly
-          type="text"
-          obj={attrObj}
-          placeholder={attrObj.placeholder || ""}
-          defaultValue={attrObj.desc}
-        />
-      );
-    } else if (selectCategory === "CheckBox") {
-      return (
-        <S.TestCheckbox
-          readOnly
-          type="checkbox"
-          obj={attrObj}
-          checked={attrObj.checked || false}
-        />
-      );
-    }
-    // else if (selectCategory === "Card") {
-    //   return <div>card</div>;
-    // }  else if (selectCategory === "BoxShadow") {
-    //   return <div>box shadow</div>;
-    // } else if (selectCategory === "Radio") {
-    //   return <input type="radio" />;
-    // }
-    else {
-      return null;
-    }
-  }, [selectCategory, attrObj]);
+  // const returnElement = useCallback(() => {
+  //   if (selectCategory === "Button") {
+  //     return (
+  //       <S.TestButton obj={attrObj}>{attrObj.desc || "Button"}</S.TestButton>
+  //     );
+  //   } else if (selectCategory === "Input") {
+  //     return (
+  //       <S.TestInput
+  //         readOnly
+  //         type="text"
+  //         obj={attrObj}
+  //         placeholder={attrObj.placeholder || "placeholder 입니다."}
+  //         defaultValue={attrObj.desc}
+  //       />
+  //     );
+  //   } else if (selectCategory === "CheckBox") {
+  //     return (
+  //       <S.TestCheckbox
+  //         readOnly
+  //         type="checkbox"
+  //         obj={attrObj}
+  //         checked={attrObj.checked || false}
+  //       />
+  //     );
+  //   }
+  //   // else if (selectCategory === "Card") {
+  //   //   return <div>card</div>;
+  //   // }  else if (selectCategory === "BoxShadow") {
+  //   //   return <div>box shadow</div>;
+  //   // } else if (selectCategory === "Radio") {
+  //   //   return <input type="radio" />;
+  //   // }
+  //   else {
+  //     return null;
+  //   }
+  // }, [selectCategory, attrObj]);
 
-  useEffect(() => {
-    returnElement();
-  }, [returnElement]);
+  // useEffect(() => {
+  //   returnElement();
+  // }, [returnElement]);
 
   // customhook에서 가져온 객체 state로 관리하기 위해
   useEffect(() => {
@@ -91,15 +97,15 @@ const RegisterComponentPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("눌림");
-    // console.log("attrObj ::", attrObj);
     addComponentQuery.mutate({ selectCategory, attrObj });
   };
 
   return (
     <S.RegisterWrapper>
       <S.HandleComponentBox>
-        {selectCategory && returnElement()}
+        {/* {selectCategory && returnElement()} */}
+        {/* {selectCategory && element} */}
+        {selectCategory && returnElement(selectCategory, attrObj)}
       </S.HandleComponentBox>
       <S.HandleStyleBox
         onSubmit={(e) => {
