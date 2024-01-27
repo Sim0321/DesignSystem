@@ -42,11 +42,32 @@ export const Header = styled.header`
       margin-left: 10px;
       background-color: ${theme.color.backGround};
       box-shadow: 0px 0px 0px 0 #ddd;
-      cursor: pointer;
+      cursor: default;
       font-family: TheJamsil3Regular;
 
       &:hover {
         box-shadow: 0px 0px 8px 0px #abaaaa;
+      }
+    }
+    .add {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 15px;
+      background-color: ${theme.color.lightBlue};
+      transition: ${theme.transition.default};
+      cursor: pointer;
+      svg {
+        position: relative;
+      }
+      &:hover {
+        background-color: ${theme.color.hoverBlue};
+      }
+      &:hover svg path {
+        fill: #fff;
       }
     }
   }

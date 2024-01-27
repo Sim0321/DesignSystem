@@ -9,6 +9,9 @@ export const SideBar = styled.div`
     margin: 10px 0;
     padding: 6px;
     font-family: TheJamsil5Bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .folder {

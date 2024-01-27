@@ -1,6 +1,7 @@
 import * as S from "../../styles/components/sideBar/SideBar.style";
 import useComponent from "../../hooks/useComponent";
 import ComponentTitle from "./ComponentList";
+import ComponentI from "../../assets/icons/component.svg?react";
 // import { useEffect } from "react";
 
 const SideBar = () => {
@@ -8,7 +9,10 @@ const SideBar = () => {
 
   return (
     <S.SideBar>
-      <div className="title">Components</div>
+      <div className="title">
+        <ComponentI />
+        Components
+      </div>
       <div className="folder">
         {categoryArray &&
           categoryArray.map((component) => (

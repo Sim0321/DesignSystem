@@ -7,7 +7,7 @@ const initialState = {
 
 const componentSlice = createSlice({
   name: "component",
-  initialState: initialState,
+  initialState,
   reducers: {
     setComponent: (state, { payload: component }) => {
       state.component = component;

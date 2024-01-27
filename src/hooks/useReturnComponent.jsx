@@ -3,8 +3,6 @@ import * as S from "../styles/pages/RegisterComponentPage.style";
 
 const useReturnComponent = () => {
   const returnElement = useCallback((selectCategory, attrObj) => {
-    console.log("selectCategory ::", selectCategory);
-    console.log("attrObj ::", attrObj);
     if (selectCategory === "Button") {
       return (
         <S.TestButton obj={attrObj}>{attrObj.desc || "Button"}</S.TestButton>
@@ -16,26 +14,17 @@ const useReturnComponent = () => {
           type="text"
           obj={attrObj}
           placeholder={attrObj.placeholder || ""}
-          defaultValue={attrObj.desc}
+          defaultValue={attrObj.desc || "Input"}
         />
       );
-    } else if (selectCategory === "CheckBox") {
-      return (
-        <S.TestCheckbox
-          readOnly
-          type="checkbox"
-          obj={attrObj}
-          checked={attrObj.checked || false}
-        />
-      );
+    } else if (selectCategory === "Card") {
+      return <S.TestCard obj={attrObj}>{attrObj.desc || "Card"} </S.TestCard>;
+    } else if (selectCategory === "BoxShadow") {
+      return <S.TestBoxShadow obj={attrObj}>Box</S.TestBoxShadow>;
     } else {
       return null;
     }
   }, []);
-
-  //   useEffect(() => {
-  //   returnElement();
-  // }, [returnElement]);
 
   return { returnElement };
 };

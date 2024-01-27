@@ -41,33 +41,7 @@ export const HaveComponent = styled.div`
     position: relative;
     height: calc(100% - 75px);
     overflow-y: auto;
-    padding-right: 8px;
-    .item {
-      /* flex: 1; */
-      width: 49%;
-      height: 140px;
-      border: 1px solid ${theme.color.gray};
-      margin-bottom: 24px;
-      border-radius: 8px;
-      &:nth-child(odd) {
-        float: left;
-      }
-      &:nth-child(even) {
-        float: right;
-      }
-
-      &-header {
-        padding: 20px;
-        font-size: 1.4rem;
-        border-bottom: 1px solid ${theme.color.gray};
-      }
-      &-body {
-        display: flex;
-        height: calc(140px - 65px);
-        padding: 0 25px;
-        align-items: center;
-      }
-    }
+    padding: 15px 12px 0;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -82,6 +56,31 @@ export const HaveComponent = styled.div`
 
     &::-webkit-scrollbar-track {
       background: #fff;
+    }
+  }
+`;
+
+export const NoTitle = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+
+  p {
+    animation: scaleFont 3s linear infinite;
+  }
+
+  @keyframes scaleFont {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 `;

@@ -17,19 +17,15 @@ function useReturnObj(title) {
         setAttr(Utils.inputAttr);
         setAttrKeys([...Object.keys(Utils.inputAttr)]);
         break;
-      case "CheckBox":
-        setAttr(Utils.checkBoxAttr);
-        setAttrKeys([...Object.keys(Utils.checkBoxAttr)]);
+
+      case "Card":
+        setAttr(Utils.cardAttr);
+        setAttrKeys([...Object.keys(Utils.cardAttr)]);
         break;
-      // case "Radio":
-      //   setAttr();
-      //   break;
-      // case "Card":
-      //   setAttr();
-      //   break;
-      // case "BoxShadow":
-      //   setAttr();
-      //   break;
+      case "BoxShadow":
+        setAttr(Utils.boxShadowAttr);
+        setAttrKeys([...Object.keys(Utils.boxShadowAttr)]);
+        break;
       default:
         setAttr({});
         setAttrKeys([]);

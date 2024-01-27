@@ -1,11 +1,13 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { addComponent, getCategory } from "../apis/firebase";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function useComponent() {
+  const navigate = useNavigate();
   const [categoryArray, setCategoryArray] = useState([]);
-  // const [componentDataArray, setComponentDataArray] = useState([]);
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
+
   // v4
   // const categoryQuery = useQuery(["category"], () => getCategory(), {
   //   onSuccess: () => {
@@ -23,14 +25,14 @@ function useComponent() {
     mutationFn: ({ selectCategory, attrObj }) =>
       addComponent(selectCategory, attrObj),
     onSuccess: () => {
-      // queryClient.invalidateQueries({ queryKey: ["category"] });
-      console.log("성공적으로 등록함");
+      queryClient.invalidateQueries({ queryKey: ["category"] });
+      // console.log("성공적으로 등록함");
+      navigate("/");
     },
   });
 
   useEffect(() => {
     if (categoryQuery.data) {
-      // console.log("성공");
       setCategoryArray([...Object.keys(categoryQuery.data)]);
     }
   }, [categoryQuery.data]);
@@ -39,7 +41,6 @@ function useComponent() {
     categoryQuery,
     addComponentQuery,
     categoryArray,
-    // componentDataArray,
   };
 }
 

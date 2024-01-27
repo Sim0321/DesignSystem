@@ -24,6 +24,9 @@ export const ComponentTitle = styled.div`
       animation: downInfinite 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
   }
+  .active {
+    background-color: #ede7f6;
+  }
 
   .component_name-list {
     display: flex;

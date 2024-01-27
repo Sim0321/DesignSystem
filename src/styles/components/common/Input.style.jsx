@@ -12,6 +12,12 @@ export const Input = styled.input`
   /* background-color: ${(p) => (p.bg ? p.bg : `${theme.color.deepblue}`)}; */
 
   ${(p) =>
+    p.size === "super" &&
+    css`
+      width: 280px;
+    `}
+
+  ${(p) =>
     p.size === "large" &&
     css`
       width: 250px;
