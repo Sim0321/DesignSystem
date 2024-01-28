@@ -27,7 +27,7 @@ const inputAttr = {
   padding: "0px 10px",
   border_width: "1px",
   border_style: "solid",
-  border_color: "3000",
+  border_color: "#000",
   font_size: "14px",
   font_weight: "",
   box_shadow: "",
