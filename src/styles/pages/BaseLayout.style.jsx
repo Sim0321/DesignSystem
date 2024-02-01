@@ -7,7 +7,7 @@ export const MainWrapper = styled.main`
 
 export const ComponentWrapper = styled.div`
   width: calc(100% - 260px);
-  height: calc(100vh - 80px);
+  /* height: calc(100vh - 80px); */
   padding: 20px;
   margin-right: 20px;
   background-color: ${theme.color.backGround};

@@ -143,5 +143,6 @@ export const HandleStyleBox = styled.form`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 40px;
   }
 `;
