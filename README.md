@@ -4,7 +4,7 @@
 
 - 📌 디자인 시스템 원리로 만든 컴포넌트별 css 코드 템플릿
 
-[결과물 배포](https://design-system-khaki.vercel.app/)
+[결과물 배포](https://design-system-khaki.vercel.app/) <br>
 [시연 영상](https://www.youtube.com/watch?v=LjqeWm1vNw8)
 
 ### 📅프로젝트 기간
