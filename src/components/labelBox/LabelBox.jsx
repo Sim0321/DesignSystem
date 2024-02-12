@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "../common/Input";
 import * as S from "../../styles/components/labelBox/LabelBox.style";
 import Label from "../common/Label";
-import * as Utils from "../../utils/array";
+import * as Utils from "../../utils/constant";
 import Picker from "../../assets/icons/picker.svg?react";
 import PickerModal from "../modal/PickerModal";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import * as Utils from "../utils/obj";
+import * as Utils from "../utils/constant";
 
 function useReturnObj(title) {
   const [attr, setAttr] = useState({});

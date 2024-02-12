@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as S from "../styles/pages/RegisterComponentPage.style";
-import * as Utils from "../utils/array";
+import * as Utils from "../utils/constant";
 import LabelBox from "../components/labelBox/LabelBox";
 import useReturnObj from "../hooks/useReturnObj";
 import Button from "../components/common/Button";
